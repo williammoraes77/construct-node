@@ -1,0 +1,17 @@
+{
+  "name": "construct",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@serialport/stream": "^11.0.0",
+    "serialport": "^8.0.8",
+    "websocket": "^1.0.34"
+  }
+}
