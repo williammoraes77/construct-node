@@ -3,7 +3,7 @@ const http = require("http");
 
 const SerialPort = require("serialport");
 const Readline = require("@serialport/parser-readline");
-const port = new SerialPort("/dev/cu.usbserial-14310", { baudRate: 9600 });
+const port = new SerialPort("/dev/cu.usbmodem142101", { baudRate: 9600 });
 const parser = port.pipe(new Readline({ delimiter: "\r\n" }));
 
 port.on("open", function () {
@@ -29,9 +29,11 @@ wsServer.on("request", function (request) {
   connection.on("message", function (message) {
     if (message.type === "utf8") {
       console.log("Mensagem recebida: " + message.utf8Data);
-      connection.sendUTF("Mensagem recebida: " + message.utf8Data);
+      // connection.sendUTF("Mensagem recebida: " + message.utf8Data);
+      connection.sendUTF(message);
       // Lógica para manipular a mensagem, se necessário
     }
+    connection.sendUTF(1);
   });
 
   // Resto do código...

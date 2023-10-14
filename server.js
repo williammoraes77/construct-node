@@ -72,6 +72,7 @@ wsServer.on("request", function (request) {
   // Lógica para receber dados do Arduino via porta serial
   parser.on("data", function (data) {
     // Enviar os dados para o Construct 3 via WebSocket
+    console.log(data);
     connection.sendUTF(data);
   });
 

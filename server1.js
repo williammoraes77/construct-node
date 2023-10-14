@@ -1,37 +1,16 @@
-// const SerialPort = require("serialport");
-// const express = require("express");
-// const app = express();
-// const port = 3000;
+const SerialPort = require("serialport"); //é usado para a comunicação com a porta serial do Arduino
+const WebSocket = require("ws"); //Lib para cria servidor Websocket que permite a comunicaçao bilateral
+const express = require("express"); //Lib parab riar um servidor web
+const http = require("http"); //Lib para Cria um servidor http, para fazer a comunicaçao inicial e nao ser bloqueado por CORS (sistema de segurança web)
 
-// // Configuração da porta serial
-// const serialPort = new SerialPort("/dev/cu.usbmodem144101", {
-//   baudRate: 9600, // A mesma taxa de transmissão definida no Arduino
-// });
-
-// // Configuração do servidor web
-// app.get("/", (req, res) => {
-//   // Configura a resposta do servidor para exibir o caractere recebido
-//   serialPort.on("data", (data) => {
-//     res.send(`Caractere recebido: ${data.toString()}`);
-//   });
-// });
-
-// // Inicializa o servidor web
-// app.listen(port, () => {
-//   console.log(`Servidor rodando em http://localhost:${port}`);
-// });
-
-const SerialPort = require("serialport");
-const WebSocket = require("ws");
-const express = require("express");
-const http = require("http");
-
+//Aqui estamos criando um servidor web
 const app = express();
 const server = http.createServer(app);
+//
 const wss = new WebSocket.Server({ server });
 
 // Configuração da porta serial
-const serialPort = new SerialPort("/dev/cu.usbmodem144101", {
+const serialPort = new SerialPort("/dev/cu.usbmodem142101", {
   baudRate: 9600, // A mesma taxa de transmissão definida no Arduino
 });
 
@@ -53,6 +32,5 @@ wss.on("connection", (ws) => {
 // Inicializa o servidor
 const port = 3000;
 server.listen(port, () => {
-  n;
   console.log(`Servidor WebSocket rodando em http://localhost:${port}`);
 });
